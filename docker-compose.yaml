@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  rabbit-mq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # RabbitMQ default communication port
+      - "15672:15672" # RabbitMQ Management Plugin Web UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest # Change these in production
+      RABBITMQ_DEFAULT_PASS: guest # Change these in production
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:
+    driver: local
